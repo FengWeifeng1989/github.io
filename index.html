@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冯伟峰 - 个人简历</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入Chart.js用于数据可视化 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 引入数学库用于模型计算 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@11.8.0/lib/browser/math.min.js"></script>
+    <!-- 引入AOS库用于滚动动画 -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- 引入Font Awesome图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="name-title">冯伟峰</h1>
+            <p class="subtitle">数据分析专家 / 经营管理顾问</p>
+            <div class="header-buttons">
+                <a href="#contact" class="btn btn-outline">联系我</a>
+                <a href="#models" class="btn btn-primary">查看数据模型</a>
+            </div>
+        </div>
+        <div class="wave-container">
+            <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+                <path fill="#f8f9fa" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,80C672,64,768,64,864,80C960,96,1056,128,1152,122.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#profile"><i class="fas fa-user"></i> 个人简介</a></li>
+                <li><a href="#experience"><i class="fas fa-briefcase"></i> 工作经历</a></li>
+                <li><a href="#education"><i class="fas fa-graduation-cap"></i> 教育背景</a></li>
+                <li><a href="#skills"><i class="fas fa-tools"></i> 专业技能</a></li>
+                <li><a href="#achievements"><i class="fas fa-award"></i> 业绩成就</a></li>
+                <li><a href="#models"><i class="fas fa-chart-line"></i> 数据模型</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="profile" data-aos="fade-up">
+            <h2><i class="fas fa-user-circle"></i> 个人简介</h2>
+            <div class="profile-content">
+                <div class="profile-image">
+                    <img src="https://via.placeholder.com/250x250?text=冯伟峰" alt="冯伟峰照片" id="avatar">
+                    <div class="profile-social">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-weixin"></i></a>
+                    </div>
+                </div>
+                <div class="profile-text">
+                    <p class="profile-bio">擅长数据分析和业务运营的专业人士，具有银行、金融、建筑和数字技术行业的丰富经验。专注于通过数据驱动的方法解决复杂业务问题，提升组织效率和业绩表现。擅长搭建数据分析平台，优化业务流程，推动业绩目标达成。</p>
+                    
+                    <div id="contact" class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>150-0987-XXXX</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>fengweifeng@example.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>辽宁省沈阳市</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-home"></i>
+                            <span>籍贯：广东省</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" data-aos="fade-up">
+            <h2><i class="fas fa-briefcase"></i> 工作经历</h2>
+            <div class="timeline">
+                <div class="experience-item">
+                    <div class="experience-date">
+                        <p>2024年1月 - 至今</p>
+                    </div>
+                    <div class="experience-content" data-aos="zoom-in" data-aos-delay="100">
+                        <h3>经营管理部</h3>
+                        <p class="company">辽宁向日葵数字技术股份有限公司</p>
+                        <div class="experience-details">
+                            <h4>工作内容：</h4>
+                            <div class="experience-group">
+                                <h5>经营分析与业绩目标推动：</h5>
+                                <ul>
+                                    <li>负责搭建和完善公司经营分析体系，收集、整理并分析销售、交付、财务、人效成本等多维度数据</li>
+                                    <li>通过构建数据模型，定期生成经营分析报告，准确反映公司业务运营状况及发展趋势</li>
+                                    <li>根据公司经营战略，设定并跟踪关键业绩指标，识别业绩增长点与潜在风险</li>
+                                </ul>
+                            </div>
+                            <div class="experience-group">
+                                <h5>经营策略优化与信息化系统创新：</h5>
+                                <ul>
+                                    <li>基于数据分析结论，参与优化经营策略、经营计划及成本控制措施</li>
+                                    <li>与财务部、销售部、交付部、产研等部门紧密合作，推动业绩指标提升</li>
+                                    <li>引入和应用新的数据分析工具和技术，提升团队数据分析能力和效率</li>
+                                </ul>
+                            </div>
+                            <div class="experience-group">
+                                <h5>业绩达成：</h5>
+                                <ul>
+                                    <li>拉通各部门数据管理口径，建立公司级信息化数据管理中台</li>
+                                    <li>优化营销部、交付部等业务部门管理制度文件，提高工作效率</li>
+                                    <li>建立跨部门业绩追踪检视体系和数据模型，实现业绩的持续改进</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-date">
+                        <p>2018年7月 - 2023年10月</p>
+                    </div>
+                    <div class="experience-content" data-aos="zoom-in" data-aos-delay="200">
+                        <h3>业务品质部</h3>
+                        <p class="company">平安普惠融资担保有限公司辽宁分公司</p>
+                        <div class="experience-details">
+                            <h4>工作内容：</h4>
+                            <div class="experience-group">
+                                <h5>互联网贷款产品全流程设计：</h5>
+                                <ul>
+                                    <li>贷前：准入、授信、定价、一城一策策略、反欺诈、聚集性风险模型开发</li>
+                                    <li>贷中：系统风险识别、流转人工风险案件核查、贷中风险调额</li>
+                                    <li>贷后：迁徙率、理赔率、回收率等贷后指标跟踪、风险策略优化</li>
+                                </ul>
+                            </div>
+                            <div class="experience-group">
+                                <h5>自动化数据平台搭建：</h5>
+                                <ul>
+                                    <li>利用Tableau、FINEBI、GS等多种软件，搭建可视化BI自动报表</li>
+                                    <li>实现产品申请、转化、贷后等全流程的实时监控和数据分析</li>
+                                    <li>利用SAS、MySQL、Python等分析工具对客户数据挖掘分析</li>
+                                </ul>
+                            </div>
+                            <div class="experience-group">
+                                <h5>业绩达成：</h5>
+                                <ul>
+                                    <li>2020、2021年抵押业务逐年增长200%，21年底ENR平台超百亿</li>
+                                    <li>2020、2021年连续两年公司管理序列个人考核排名前30%及前10%</li>
+                                    <li>完成贷款产品多个风控策略优化，贷后逾期指标逐年改善70%</li>
+                                    <li>完成搭建自动化分析报表平台，业务数据分析效率提升80%</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-date">
+                        <p>2015年6月 - 2018年7月</p>
+                    </div>
+                    <div class="experience-content" data-aos="zoom-in" data-aos-delay="300">
+                        <h3>市场合作部经理</h3>
+                        <p class="company">辽宁丰华友联商贸有限公司 / 营口友创联建筑咨询有限公司</p>
+                        <ul>
+                            <li>负责建筑行业中小微企业服务平台搭建，发布政策法规和市场信息</li>
+                            <li>推动企业间相互技术支持与资源共享，促进技术创新与成果转化</li>
+                            <li>协助成员单位拓展市场，开展项目合作，提高企业的市场份额</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-date">
+                        <p>2013年7月 - 2015年5月</p>
+                    </div>
+                    <div class="experience-content" data-aos="zoom-in" data-aos-delay="400">
+                        <h3>分行零售部负责人</h3>
+                        <p class="company">中信银行营口分行</p>
+                        <ul>
+                            <li>推动零售业务转型，推动组建中信银行营口大石桥网点</li>
+                            <li>推动零售CRM系统上线，实现营口地区14年管理资产3亿增长</li>
+                            <li>负责收集和分析零售业务数据，为业务决策提供依据</li>
+                            <li>举办营口、大石桥、鲅鱼圈三地联动广场舞大赛，拉动行内储蓄及AUM业务超10亿增长</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" data-aos="fade-up">
+            <h2><i class="fas fa-graduation-cap"></i> 教育背景</h2>
+            <div class="education-item" data-aos="flip-up" data-aos-delay="100">
+                <div class="education-date">
+                    <p>2009年9月 - 2013年7月</p>
+                </div>
+                <div class="education-content">
+                    <h3>学士学位 - 国际经济与贸易</h3>
+                    <p class="school">大连理工大学</p>
+                    <div class="education-details">
+                        <h4>主修课程：</h4>
+                        <div class="course-tags">
+                            <span class="course-tag">统计学</span>
+                            <span class="course-tag">概率与统计</span>
+                            <span class="course-tag">计量经济学</span>
+                            <span class="course-tag">时间序列分析</span>
+                            <span class="course-tag">财务报表分析</span>
+                            <span class="course-tag">数据结构</span>
+                            <span class="course-tag">数据库系统</span>
+                            <span class="course-tag">程序设计</span>
+                            <span class="course-tag">国际金融</span>
+                            <span class="course-tag">国际经济合作</span>
+                            <span class="course-tag">商务谈判与合同</span>
+                            <span class="course-tag">国际贸易实务</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" data-aos="fade-up">
+            <h2><i class="fas fa-tools"></i> 专业技能</h2>
+            <div class="skills-container">
+                <div class="skill-category" data-aos="fade-right" data-aos-delay="100">
+                    <h3><i class="fas fa-language"></i> 语言技能</h3>
+                    <div class="skill-progress-container">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>英语 (CET-6)</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category" data-aos="fade-right" data-aos-delay="200">
+                    <h3><i class="fas fa-desktop"></i> 办公软件</h3>
+                    <div class="skill-progress-container">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Microsoft Office</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 95%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category" data-aos="fade-left" data-aos-delay="300">
+                    <h3><i class="fas fa-database"></i> 数据分析工具</h3>
+                    <div class="skill-progress-container">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Tableau</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>FINEBI</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>MySQL</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category" data-aos="fade-left" data-aos-delay="400">
+                    <h3><i class="fas fa-code"></i> 编程技能</h3>
+                    <div class="skill-progress-container">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Python</span>
+                                <span>70%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>SAS</span>
+                                <span>65%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements" data-aos="fade-up">
+            <h2><i class="fas fa-award"></i> 业绩成就</h2>
+            <div class="achievements-container">
+                <div class="achievement-item" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="achievement-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>业务增长</h3>
+                        <p>2020、2021年抵押业务逐年增长200%，21年底ENR平台超百亿</p>
+                    </div>
+                </div>
+                
+                <div class="achievement-item" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="achievement-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>个人考核</h3>
+                        <p>2020、2021年连续两年公司管理序列个人考核排名前30%及前10%</p>
+                    </div>
+                </div>
+                
+                <div class="achievement-item" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="achievement-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>风控优化</h3>
+                        <p>完成贷款产品多个风控策略优化，贷后逾期指标逐年改善70%</p>
+                    </div>
+                </div>
+                
+                <div class="achievement-item" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="achievement-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>效率提升</h3>
+                        <p>搭建自动化分析报表平台，业务数据分析效率提升80%</p>
+                    </div>
+                </div>
+                
+                <div class="achievement-item" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="achievement-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>系统对接</h3>
+                        <p>完成车抵、房抵等抵押机关直连项目实现落地，实现业务便捷化</p>
+                    </div>
+                </div>
+                
+                <div class="achievement-item" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="achievement-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>业务拓展</h3>
+                        <p>组织大型营销活动，拉动行内储蓄及AUM业务超10亿增长</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="models" data-aos="fade-up">
+            <h2><i class="fas fa-chart-line"></i> 数据预测模型展示</h2>
+            
+            <div class="model-item" data-aos="fade-up" data-aos-delay="100">
+                <h3>线性回归模型</h3>
+                <p>展示简单线性回归模型的预测效果，通过调整参数可以观察不同的拟合结果。</p>
+                <div class="model-container">
+                    <div class="model-controls">
+                        <div class="control-group">
+                            <label for="slope">斜率 (m):</label>
+                            <input type="range" id="slope" min="-2" max="2" step="0.1" value="1">
+                            <span id="slope-value">1</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="intercept">截距 (b):</label>
+                            <input type="range" id="intercept" min="-5" max="5" step="0.5" value="0">
+                            <span id="intercept-value">0</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="noise">噪声水平:</label>
+                            <input type="range" id="noise" min="0" max="5" step="0.5" value="1">
+                            <span id="noise-value">1</span>
+                        </div>
+                        <button id="generate-linear">生成新数据</button>
+                    </div>
+                    <div class="model-visualization">
+                        <canvas id="linear-regression-chart"></canvas>
+                    </div>
+                </div>
+                <div class="model-equation">
+                    <p>线性回归方程: y = m * x + b</p>
+                    <p>均方误差 (MSE): <span id="linear-mse">0</span></p>
+                    <p>决定系数 (R²): <span id="linear-r2">0</span></p>
+                </div>
+            </div>
+            
+            <div class="model-item" data-aos="fade-up" data-aos-delay="200">
+                <h3>多元回归模型</h3>
+                <p>展示多元回归模型的预测效果，通过3D图表展示多个变量之间的关系。</p>
+                <div class="model-container">
+                    <div class="model-controls">
+                        <div class="control-group">
+                            <label for="coef-x">X系数:</label>
+                            <input type="range" id="coef-x" min="-2" max="2" step="0.1" value="0.5">
+                            <span id="coef-x-value">0.5</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="coef-z">Z系数:</label>
+                            <input type="range" id="coef-z" min="-2" max="2" step="0.1" value="0.5">
+                            <span id="coef-z-value">0.5</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="multi-intercept">截距:</label>
+                            <input type="range" id="multi-intercept" min="-5" max="5" step="0.5" value="1">
+                            <span id="multi-intercept-value">1</span>
+                        </div>
+                        <button id="generate-multi">生成新数据</button>
+                    </div>
+                    <div class="model-visualization">
+                        <canvas id="multi-regression-chart"></canvas>
+                    </div>
+                </div>
+                <div class="model-equation">
+                    <p>多元回归方程: y = a * x + b * z + c</p>
+                    <p>均方误差 (MSE): <span id="multi-mse">0</span></p>
+                    <p>决定系数 (R²): <span id="multi-r2">0</span></p>
+                </div>
+            </div>
+            
+            <div class="model-item" data-aos="fade-up" data-aos-delay="300">
+                <h3>多项式回归模型</h3>
+                <p>展示多项式回归模型，可以拟合非线性关系的数据。</p>
+                <div class="model-container">
+                    <div class="model-controls">
+                        <div class="control-group">
+                            <label for="degree">多项式阶数:</label>
+                            <input type="range" id="degree" min="1" max="5" step="1" value="2">
+                            <span id="degree-value">2</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="poly-noise">噪声水平:</label>
+                            <input type="range" id="poly-noise" min="0" max="5" step="0.5" value="1">
+                            <span id="poly-noise-value">1</span>
+                        </div>
+                        <button id="generate-poly">生成新数据</button>
+                    </div>
+                    <div class="model-visualization">
+                        <canvas id="poly-regression-chart"></canvas>
+                    </div>
+                </div>
+                <div class="model-equation">
+                    <p>多项式回归方程: y = a₀ + a₁x + a₂x² + ... + aₙxⁿ</p>
+                    <p>均方误差 (MSE): <span id="poly-mse">0</span></p>
+                    <p>决定系数 (R²): <span id="poly-r2">0</span></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>冯伟峰</h3>
+                    <p>数据分析专家 / 经营管理顾问</p>
+                    <p>电话: ***********（请通过社交媒体联系）</p>
+                    <p>邮箱: ***********（请通过社交媒体联系）</p>
+                </div>
+                <div class="footer-links">
+                    <h3>快速导航</h3>
+                    <ul>
+                        <li><a href="#profile">个人简介</a></li>
+                        <li><a href="#experience">工作经历</a></li>
+                        <li><a href="#education">教育背景</a></li>
+                        <li><a href="#skills">专业技能</a></li>
+                        <li><a href="#models">数据模型</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>联系我</h3>
+                    <p>如需了解更多信息，请直接联系我。</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-weixin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-qq"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 冯伟峰. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html> 

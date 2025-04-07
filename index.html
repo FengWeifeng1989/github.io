@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冯伟峰 - 金融数据分析专家</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <svg id="header-background-animation" aria-hidden="true">
+            <defs>
+                <pattern id="gridPattern" width="50" height="50" patternUnits="userSpaceOnUse">
+                    <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                </pattern>
+                <!-- 渐变定义 -->
+                <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="rgba(255,255,255,0.1)"/>
+                    <stop offset="100%" stop-color="rgba(255,255,255,0.6)"/>
+                </linearGradient>
+                <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="rgba(255,255,255,0.3)"/>
+                    <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                </linearGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#gridPattern)"/>
+            <path id="animated-line" d="M0,150 Q300,50 600,150 T1200,150" stroke="rgba(255, 255, 255, 0.2)" stroke-width="3" fill="none"/>
+            
+            <!-- 右侧金融数据图表动态元素 - 通过CSS控制定位 -->
+            <g id="financial-chart">
+                <!-- 图表框架 -->
+                <rect x="0" y="0" width="500" height="300" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" rx="5"/>
+                
+                <!-- 水平网格线 -->
+                <line x1="0" y1="50" x2="500" y2="50" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <line x1="0" y1="100" x2="500" y2="100" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <line x1="0" y1="150" x2="500" y2="150" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <line x1="0" y1="200" x2="500" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <line x1="0" y1="250" x2="500" y2="250" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                
+                <!-- 垂直网格线 -->
+                <line x1="100" y1="0" x2="100" y2="300" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <line x1="200" y1="0" x2="200" y2="300" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <line x1="300" y1="0" x2="300" y2="300" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <line x1="400" y1="0" x2="400" y2="300" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                
+                <!-- 图表标签 -->
+                <text x="20" y="25" fill="rgba(255,255,255,0.3)" font-size="12" class="chart-label">641,589</text>
+                <text x="390" y="275" fill="rgba(255,255,255,0.3)" font-size="12" class="chart-label">12,356</text>
+                <text x="230" y="200" fill="rgba(255,255,255,0.3)" font-size="12" class="chart-label">89,888</text>
+                <text x="120" y="80" fill="#4caf50" font-size="12" class="chart-label">+10.7%</text>
+                <text x="320" y="130" fill="#ff9800" font-size="14" class="chart-label" id="animated-value">285,369</text>
+                
+                <!-- 折线图 -->
+                <path class="chart-line" d="M20,250 L80,200 L150,220 L200,100 L250,150 L300,80 L350,180 L400,120 L480,180" 
+                      stroke="url(#lineGradient)" stroke-width="2" fill="none"/>
+                
+                <!-- 面积图填充 -->
+                <path class="chart-area" d="M20,250 L80,200 L150,220 L200,100 L250,150 L300,80 L350,180 L400,120 L480,180 L480,300 L20,300 Z" 
+                      fill="url(#chartGradient)" opacity="0.3"/>
+                
+                <!-- 数据点 -->
+                <circle cx="20" cy="250" r="3" fill="#ffffff" class="data-point"/>
+                <circle cx="80" cy="200" r="3" fill="#ffffff" class="data-point"/>
+                <circle cx="150" cy="220" r="3" fill="#ffffff" class="data-point"/>
+                <circle cx="200" cy="100" r="3" fill="#ffffff" class="data-point"/>
+                <circle cx="250" cy="150" r="3" fill="#ffffff" class="data-point"/>
+                <circle cx="300" cy="80" r="4" fill="#4caf50" class="data-point pulsing-point"/>
+                <circle cx="350" cy="180" r="3" fill="#ffffff" class="data-point"/>
+                <circle cx="400" cy="120" r="3" fill="#ffffff" class="data-point"/>
+                <circle cx="480" cy="180" r="4" fill="#ff9800" class="data-point pulsing-point actual-end-point"/>
+                
+                <!-- 预测线 -->
+                <path class="prediction-line" d="M480,180 L510,160 L540,190 L570,170" 
+                      stroke="#ffeb3b" stroke-width="2" fill="none" stroke-dasharray="6, 6"/>
+                
+                <!-- 预测数据点 -->
+                <circle cx="510" cy="160" r="3" fill="#ffeb3b" class="prediction-point"/>
+                <circle cx="540" cy="190" r="3" fill="#ffeb3b" class="prediction-point"/>
+                <circle cx="570" cy="170" r="3" fill="#ffeb3b" class="prediction-point"/>
+                
+                <!-- 预测标签 -->
+                <text x="500" y="150" fill="#ffeb3b" font-size="12" class="prediction-label">预测趋势</text>
+                
+                <!-- 垂直参考线 -->
+                <line x1="300" y1="0" x2="300" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="5,5" class="reference-line"/>
+            </g>
+        </svg>
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-info">
+                    <h1>冯伟峰</h1>
+                    <h2>金融数据分析 | 经营管理 | 风险控制</h2>
+                    <p><i class="fas fa-graduation-cap"></i> 大连理工大学 · 国际经济与贸易</p>
+                    <p><i class="fas fa-phone-alt"></i> <span class="masked-info">150-****-**78</span></p>
+                    <p><i class="fas fa-map-marker-alt"></i> <span class="masked-info">辽宁省沈阳市</span></p>
+                    <div class="profile-links">
+                        <a href="#contact" class="btn primary-btn"><i class="fas fa-envelope"></i> 联系我</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav id="navbar">
+        <div class="container">
+            <ul>
+                <li><a href="#about">关于我</a></li>
+                <li><a href="#experience">工作经历</a></li>
+                <li><a href="#skills">专业技能</a></li>
+                <li><a href="#projects">数据模型</a></li>
+                <li><a href="#education">教育背景</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">职业概述</h2>
+            <div class="section-content">
+                <p>数据驱动型专业人士，拥有<strong>11年</strong>金融行业经验，擅长<span class="highlight-skill">金融数据分析</span>、<span class="highlight-skill">经营管理</span>和<span class="highlight-skill">风险控制</span>。专长于构建数据分析模型、优化业务流程并提供战略决策支持，曾主导多个数据分析平台建设，显著提升业务效率与业绩达成。</p>
+                <div class="highlight-box">
+                    <div class="highlight-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>数据分析</h3>
+                        <p>精通数据挖掘与分析，构建经营分析体系和数据模型</p>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>风险控制</h3>
+                        <p>丰富的贷款风控经验，熟悉风险策略优化和模型开发</p>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-sitemap"></i>
+                        <h3>经营管理</h3>
+                        <p>擅长跨部门协作，推动业绩增长和效率提升</p>
+                    </div>
+                    <div class="highlight-item analytics-system-item">
+                        <i class="fas fa-database"></i>
+                        <h3>设计及搭建数据分析系统</h3>
+                        <div class="system-image">
+                            <img src="分析系统模拟.png" alt="数据分析系统界面" class="system-preview">
+                        </div>
+                        <div class="data-note">（展示内容为模拟数据）</div>
+                        <p>设计并实现自动化数据分析平台，整合多源数据，可接入本地部署LLM大模型，提供实时业务洞察</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">工作经历</h2>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2024.1 - 至今</div>
+                        <div class="timeline-content">
+                            <h3>辽宁向日葵数字技术股份有限公司</h3>
+                            <h4>经营管理部</h4>
+                            <div class="job-description">
+                                <p class="responsibility"><b>经营分析与业绩目标推动：</b> 搭建完善公司经营分析体系，构建数据模型，生成经营分析报告，设定跟踪关键业绩指标。</p>
+                                <p class="responsibility"><b>经营策略优化与信息化系统创新：</b> 参与优化经营策略、成本控制措施，推动业绩指标提升，引入新的数据分析工具和技术。</p>
+                                <ul class="achievements">
+                                    <li>建立公司级信息化数据管理中台，确保数据一致性和准确性</li>
+                                    <li>优化业务部门管理制度文件，提高工作效率</li>
+                                    <li>建立跨部门业绩追踪检视体系，推动业绩目标达成</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2018.7 - 2023.10</div>
+                        <div class="timeline-content">
+                            <h3>平安普惠融资担保有限公司辽宁分公司</h3>
+                            <h4>业务品质部</h4>
+                            <div class="job-description">
+                                <p class="responsibility"><b>互联网贷款产品全流程设计：</b> 负责贷前准入、授信、反欺诈模型开发；贷中风险识别；贷后指标跟踪和风险策略优化。</p>
+                                <p class="responsibility"><b>自动化数据平台搭建：</b> 利用Tableau、FINEBI等搭建可视化BI自动报表，使用SAS、MySQL、Python进行数据挖掘分析。</p>
+                                <p class="responsibility"><b>业务培训及跨部门协作：</b> 研发风险培训课件，建立业务风控管理对接机制，制定绩效考核方案。</p>
+                                <ul class="achievements">
+                                    <li>2020、2021年抵押业务逐年增长200%，21年底ENR平台超百亿</li>
+                                    <li>连续两年公司管理序列个人考核排名前30%及前10%</li>
+                                    <li>贷后逾期指标逐年改善70%，提升业务签约时效50%</li>
+                                    <li>业务数据分析效率提升80%</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2015.6 - 2018.7</div>
+                        <div class="timeline-content">
+                            <h3>辽宁丰华友联商贸有限公司/营口友创联建筑咨询有限公司</h3>
+                            <h4>市场合作部经理</h4>
+                            <div class="job-description">
+                                <p class="responsibility"><b>建筑行业中小微企业服务平台搭建：</b> 发布政策法规、行业项目信息，提供信息融合支持。</p>
+                                <p class="responsibility"><b>推动企业间技术支持与资源共享：</b> 组织技术研究与开发，搭建信息共享平台。</p>
+                                <p class="responsibility"><b>促进企业间市场拓展与合作：</b> 协助成员单位拓展市场，开展项目合作。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2013.7 - 2015.5</div>
+                        <div class="timeline-content">
+                            <h3>中信银行营口分行</h3>
+                            <h4>分行零售部负责人</h4>
+                            <div class="job-description">
+                                <p class="responsibility"><b>推动零售业务转型：</b> 分管零售业务板块，推动CRM系统上线，实现管理资产增长。</p>
+                                <p class="responsibility"><b>协助零售业务体系搭建：</b> 负责收集分析零售业务数据，为决策提供依据。</p>
+                                <p class="responsibility"><b>品牌地方落地推广：</b> 组织三地联动广场舞大赛，拉动储蓄及AUM业务超10亿增长。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">专业技能</h2>
+            <div class="section-content">
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-laptop-code"></i> 数据分析工具</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <span>FINEBI</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 95%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Tableau</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>SAS</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Python</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>MySQL</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3><i class="fas fa-chart-pie"></i> 分析能力</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <span>数据建模</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 95%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>风险评估</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 92%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>业务分析</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>经营管理</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 88%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3><i class="fas fa-language"></i> 语言能力</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <span>英语 (CET-6)</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">金融数据模型案例</h2>
+            <div class="section-content">
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h3>线性回归模型：信贷评分系统</h3>
+                        <div class="project-content">
+                            <div class="model-visualization">
+                                <canvas id="linearRegressionChart"></canvas>
+                            </div>
+                            <div class="project-description">
+                                <p>基于多变量线性回归的信贷评分模型，使用收入、年龄、负债比等关键指标预测客户还款能力。模型准确率达85%，优化了贷前风险控制流程。</p>
+                                <div class="model-equation">
+                                    <p>y = 0.42x₁ + 0.31x₂ - 0.56x₃ + 0.22x₄ + 72.5</p>
+                                    <p><small>其中: x₁=月收入(千元), x₂=信用历史(年), x₃=负债比率, x₄=年龄</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>逻辑回归模型：贷款违约预测</h3>
+                        <div class="project-content">
+                            <div class="model-visualization">
+                                <canvas id="logisticRegressionChart"></canvas>
+                            </div>
+                            <div class="project-description">
+                                <p>建立客户违约概率预测模型，整合客户行为特征和历史还款记录，AUC达0.82，有效识别高风险客户，降低贷款损失率20%。</p>
+                                <div class="model-equation">
+                                    <p>P(违约) = 1 / (1 + e^(-z))</p>
+                                    <p>z = -4.2 + 1.8x₁ - 0.9x₂ + 1.2x₃ + 0.6x₄ - 1.5x₅</p>
+                                    <p><small>其中: x₁=历史逾期次数, x₂=客户关系时长, x₃=负债收入比, x₄=近期查询次数, x₅=固定资产值</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>时间序列模型：贷款违约率预测</h3>
+                        <div class="project-content">
+                            <div class="model-visualization">
+                                <canvas id="timeSeriesChart"></canvas>
+                            </div>
+                            <div class="project-description">
+                                <p>采用ARIMA(2,1,2)模型分析违约率的季节性变化，预测准确率达78%，为资产配置和风险准备金提供决策支持。</p>
+                                <div class="model-equation">
+                                    <p>ARIMA(2,1,2)模型：</p>
+                                    <p>(1 - 0.7B - 0.2B²)(1-B)Yₜ = (1 + 0.5B + 0.3B²)εₜ</p>
+                                    <p><small>其中B为滞后算子，Yₜ为时间序列，εₜ为白噪声</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>聚类分析：客户分群与精准营销</h3>
+                        <div class="project-content">
+                            <div class="model-visualization">
+                                <canvas id="clusteringChart"></canvas>
+                            </div>
+                            <div class="project-description">
+                                <p>应用K-均值聚类算法对客户进行分群，识别出5个主要客户群体，营销转化率提升35%，客户满意度提高15%。</p>
+                                <div class="model-details">
+                                    <p>聚类参数：k=5, 迭代=100, 收敛阈值=0.001</p>
+                                    <p>关键特征：交易频率、平均消费额、产品偏好、风险承受能力、年龄段</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title">教育背景</h2>
+            <div class="section-content">
+                <div class="education-item">
+                    <div class="edu-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="edu-details">
+                        <h3>大连理工大学</h3>
+                        <p class="edu-degree">本科 · 国际经济与贸易</p>
+                        <p class="edu-period">2009.9 - 2013.7</p>
+                        <div class="edu-courses">
+                            <h4>主修课程</h4>
+                            <div class="courses-grid">
+                                <div class="course-item">
+                                    <span class="course-name">统计学</span>
+                                    <div class="course-detail">
+                                        <p>本课程系统讲解数据收集、整理、分析和推断的核心理论与方法，涵盖描述性统计、假设检验、回归分析等内容。通过案例实践，培养学生运用统计工具解决社会科学、商业决策等现实问题的能力，为后续高阶课程奠定基础。</p>
+                                    </div>
+                                </div>
+                                <div class="course-item">
+                                    <span class="course-name">概率与统计</span>
+                                    <div class="course-detail">
+                                        <p>聚焦概率论基础与统计推断方法，涵盖随机变量、分布模型、大数定律及贝叶斯分析等。课程强调数理逻辑与实证结合，帮助学生掌握风险预测、不确定性量化等技能，广泛应用于金融、人工智能和数据科学领域。</p>
+                                    </div>
+                                </div>
+                                <div class="course-item">
+                                    <span class="course-name">计量经济学</span>
+                                    <div class="course-detail">
+                                        <p>结合经济学理论与统计建模，研究经济变量间的因果关系。通过线性回归、工具变量、面板数据等模型，分析政策效果、市场需求预测等课题，培养学生构建和验证经济模型的实战能力。</p>
+                                    </div>
+                                </div>
+                                <div class="course-item">
+                                    <span class="course-name">时间序列分析</span>
+                                    <div class="course-detail">
+                                        <p>专攻时序数据的建模与预测技术，包括平稳性检验、ARIMA模型、GARCH波动率分析等。课程结合股票价格、宏观经济指标等案例，提升学生在金融预测、供应链管理等领域的数据驱动决策能力。</p>
+                                    </div>
+                                </div>
+                                <div class="course-item">
+                                    <span class="course-name">财务报表分析</span>
+                                    <div class="course-detail">
+                                        <p>解析企业财务报表（资产负债表、利润表、现金流量表）的核心结构与指标，学习评估公司盈利能力、偿债能力和运营效率。通过真实企业案例，掌握投资分析与风险管理的关键工具。</p>
+                                    </div>
+                                </div>
+                                <div class="course-item">
+                                    <span class="course-name">数据结构</span>
+                                    <div class="course-detail">
+                                        <p>研究数据的组织、存储与高效操作方法，涵盖链表、树、图、哈希表等结构及排序算法。通过编程实践（如Python/C++），培养解决复杂计算问题的逻辑思维，为软件开发与算法设计奠定基础。</p>
+                                    </div>
+                                </div>
+                                <div class="course-item">
+                                    <span class="course-name">数据库系统</span>
+                                    <div class="course-detail">
+                                        <p>系统学习关系型数据库（如SQL）与非关系型数据库的设计与管理，包括数据建模、事务处理、索引优化及分布式数据库技术。通过项目实践掌握企业级数据存储与检索解决方案。</p>
+                                    </div>
+                                </div>
+                                <div class="course-item">
+                                    <span class="course-name">程序设计</span>
+                                    <div class="course-detail">
+                                        <p>从编程基础到高级开发，涵盖变量、控制结构、函数、面向对象编程等核心概念。以Python/Java等语言为载体，通过项目实战培养代码编写能力，为软件工程、数据分析等方向提供技术支撑。</p>
+                                    </div>
+                                </div>
+                                <div class="course-item">
+                                    <span class="course-name">国际金融</span>
+                                    <div class="course-detail">
+                                        <p>探讨汇率机制、国际资本流动、外汇风险管理及跨国企业投融资策略。结合全球金融市场案例，分析货币政策、地缘政治对跨境金融活动的影响，培养全球化视野下的金融决策能力。</p>
+                                    </div>
+                                </div>
+                                <div class="course-item">
+                                    <span class="course-name">国际经济合作</span>
+                                    <div class="course-detail">
+                                        <p>研究跨国经济组织（如WTO、IMF）、区域贸易协定（RCEP）及国际发展援助机制。通过模拟谈判与政策分析，理解全球化背景下国家间的利益协调与竞争策略。</p>
+                                    </div>
+                                </div>
+                                <div class="course-item">
+                                    <span class="course-name">商务谈判与合同</span>
+                                    <div class="course-detail">
+                                        <p>通过模拟谈判场景，学习跨文化沟通、利益协调与冲突解决技巧。课程涵盖合同条款设计、法律风险规避及谈判心理学，培养学生制定双赢商业协议的实战能力。</p>
+                                    </div>
+                                </div>
+                                <div class="course-item">
+                                    <span class="course-name">博弈论</span>
+                                    <div class="course-detail">
+                                        <p>运用数学模型分析竞争与合作场景下的策略互动，涵盖纳什均衡、囚徒困境、拍卖理论等。课程结合商业竞争、政策制定案例，提升学生在复杂决策中的理性分析与战略规划能力。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div id="contact" class="footer-content">
+                <div class="contact-info">
+                    <h3>联系方式</h3>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:547570310@qq.com">547570310@qq.com</a></p>
+                    <p><i class="fab fa-weixin"></i> <a href="javascript:void(0);" class="wechat-id" onclick="copyWechat()" data-wechat="fengweifeng1989k">fengweifeng1989k</a> <span class="copy-tooltip">点击复制</span></p>
+                    <p><i class="fab fa-github"></i> <a href="https://github.com/FengWeifeng1989" target="_blank">github.com/FengWeifeng1989</a></p>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 冯伟峰 | 保留所有权利</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="js/charts.js"></script>
+</body>
+</html> 

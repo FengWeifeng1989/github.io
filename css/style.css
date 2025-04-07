@@ -1,0 +1,1158 @@
+/* 全局样式 */
+:root {
+    --primary-color: #0d6efd;
+    --primary-dark: #0a58ca;
+    --secondary-color: #6c757d;
+    --background-color: #f8f9fa;
+    --text-color: #212529;
+    --light-gray: #e9ecef;
+    --medium-gray: #dee2e6;
+    --dark-gray: #495057;
+    --white: #fff;
+    --border-radius: 8px;
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+ul {
+    list-style: none;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+}
+
+.primary-btn {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 12px 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.primary-btn:hover {
+    background-color: var(--white);
+    color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.primary-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.6s ease;
+    z-index: -1;
+}
+
+.primary-btn:hover::before {
+    left: 100%;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+    text-align: center;
+    position: relative;
+    color: var(--text-color);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.section-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* 隐藏个人信息 */
+.masked-info {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+/* 突出显示技能 */
+.highlight-skill {
+    font-size: 1.15em;
+    font-weight: 700;
+    color: var(--primary-color);
+    padding: 0 2px;
+}
+
+/* 头部样式 */
+header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 100px 0 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+#header-background-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Place it above the ::before pseudo-element but below content */
+    pointer-events: none; /* Allow clicks to pass through */
+}
+
+#animated-line {
+    stroke-dasharray: 1000; /* Arbitrarily large number */
+    stroke-dashoffset: 1000;
+    animation: drawLine 5s ease-out forwards, wave 8s linear infinite alternate 1s;
+}
+
+@keyframes drawLine {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes wave {
+    0% {
+        d: path("M0,150 Q300,50 600,150 T1200,150");
+    }
+    50% {
+        d: path("M0,160 Q300,70 600,140 T1200,160");
+    }
+    100% {
+        d: path("M0,150 Q300,40 600,155 T1200,150");
+    }
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Keep the gradient overlay, remove the image */
+    background-image: linear-gradient(45deg, rgba(13, 110, 253, 0.95), rgba(10, 88, 202, 0.9));
+    /* background-image: linear-gradient(45deg, rgba(13, 110, 253, 0.9), rgba(10, 88, 202, 0.8)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); */
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+.header-content {
+    position: relative; /* Ensure content stays above the SVG */
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.profile-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.profile-info h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.profile-info h2 {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.profile-info p {
+    margin: 8px 0;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+.profile-info p i {
+    margin-right: 10px;
+    width: 20px;
+}
+
+.profile-links {
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.profile-links a i {
+    margin-right: 8px;
+}
+
+/* 导航栏样式 */
+#navbar {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+#navbar ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#navbar ul li {
+    position: relative;
+}
+
+#navbar ul li a {
+    display: block;
+    padding: 20px 24px;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+#navbar ul li a:hover,
+#navbar ul li a.active {
+    color: var(--primary-color);
+}
+
+#navbar ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+#navbar ul li a:hover::after,
+#navbar ul li a.active::after {
+    width: 70%;
+}
+
+/* 关于部分样式 */
+#about {
+    background-color: var(--white);
+}
+
+.highlight-box {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    gap: 20px;
+}
+
+.highlight-item {
+    flex: 1;
+    min-width: 250px;
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.highlight-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.highlight-item i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.highlight-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+/* 数据分析系统样式 */
+.analytics-system-item {
+    /* 确保内容居中对齐 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.system-image {
+    width: 100%;
+    height: 620px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.system-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.analytics-system-item:hover .system-preview {
+    transform: scale(1.05);
+}
+
+.data-note {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    text-align: center;
+    font-style: italic;
+}
+
+/* 工作经历部分样式 */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 18px;
+    height: 100%;
+    width: 4px;
+    background-color: var(--medium-gray);
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 60px;
+    margin-bottom: 50px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--white);
+    border: 4px solid var(--primary-color);
+    z-index: 1;
+}
+
+.timeline-date {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.timeline-content {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+}
+
+.timeline-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.timeline-content h4 {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.job-description {
+    margin-top: 20px;
+}
+
+.responsibility {
+    margin-bottom: 15px;
+}
+
+.achievements {
+    margin-top: 20px;
+    padding-left: 20px;
+}
+
+.achievements li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+}
+
+.achievements li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 15px;
+    height: 15px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    opacity: 0.2;
+}
+
+/* 技能部分样式 */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.skill-category {
+    flex: 1;
+    min-width: 300px;
+}
+
+.skill-category h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.skill-category h3 i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+.skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.skill-item span {
+    font-weight: 500;
+}
+
+.skill-bar {
+    height: 10px;
+    background-color: var(--light-gray);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.skill-level {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    position: relative;
+    animation: skill-fill 1.5s ease-in-out;
+}
+
+@keyframes skill-fill {
+    0% {
+        width: 0;
+    }
+}
+
+/* 项目部分样式 */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.project-card h3 {
+    padding: 20px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-size: 1.3rem;
+}
+
+.project-content {
+    padding: 20px;
+}
+
+.model-visualization {
+    width: 100%;
+    height: 250px;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.project-description {
+    padding: 0 10px;
+}
+
+.model-equation, .model-details {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: var(--light-gray);
+    border-radius: var(--border-radius);
+    font-family: "Consolas", monospace;
+}
+
+/* 教育背景部分样式 */
+.education-item {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+}
+
+.edu-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.edu-details {
+    flex: 1;
+}
+
+.edu-details h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.edu-degree {
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+}
+
+.edu-period {
+    font-size: 1rem;
+    color: var(--dark-gray);
+    margin-bottom: 20px;
+}
+
+.edu-courses h4 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+}
+
+.courses-grid span {
+    background-color: var(--light-gray);
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+/* 新增课程悬停效果相关样式 */
+.course-item {
+    position: relative;
+}
+
+.course-name {
+    background-color: var(--light-gray);
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    color: var(--dark-gray);
+}
+
+.course-item:hover .course-name {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.course-detail {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 300px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 12px 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    transform: translateY(10px);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.course-item:hover .course-detail {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(5px);
+}
+
+/* 根据位置调整弹出方向，防止溢出屏幕 */
+.course-item:nth-child(3n) .course-detail,
+.course-item:nth-child(3n-1) .course-detail {
+    left: auto;
+    right: 0;
+}
+
+/* 页脚样式 */
+footer {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 60px 0 30px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.contact-info {
+    text-align: center;
+}
+
+.contact-info h3 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.contact-info p {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-info a {
+    color: var(--white);
+    transition: color 0.3s;
+}
+
+.contact-info a:hover {
+    color: var(--light-gray);
+}
+
+/* 微信号点击复制相关样式 */
+.wechat-id {
+    position: relative;
+    cursor: pointer;
+    padding-bottom: 2px;
+    border-bottom: 1px dashed rgba(255,255,255,0.5);
+    transition: all 0.3s;
+}
+
+.wechat-id:hover {
+    color: var(--light-gray);
+    border-bottom-color: var(--light-gray);
+}
+
+.copy-tooltip {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.7);
+    margin-left: 8px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    vertical-align: middle;
+}
+
+.wechat-id:hover + .copy-tooltip {
+    opacity: 1;
+}
+
+.copy-success {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 1rem;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.copy-success.show {
+    opacity: 1;
+}
+
+.copyright {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    text-align: center;
+}
+
+/* 媒体查询 - 响应式设计 */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-info {
+        margin-bottom: 30px;
+    }
+
+    .profile-info p {
+        justify-content: center;
+    }
+
+    .profile-links {
+        justify-content: center;
+    }
+
+    #navbar ul {
+        flex-wrap: wrap;
+    }
+
+    #navbar ul li a {
+        padding: 15px 15px;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+
+    .timeline::before {
+        left: 0;
+    }
+
+    .timeline-item {
+        padding-left: 40px;
+    }
+
+    .timeline-dot {
+        width: 30px;
+        height: 30px;
+        top: 5px;
+    }
+
+    .highlight-item {
+        min-width: 100%;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .education-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .edu-icon {
+        margin-bottom: 20px;
+    }
+
+    .courses-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+    
+    /* 移动端课程悬停样式调整 */
+    .course-detail {
+        width: 250px;
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+    
+    /* 调整弹出方向，确保在小屏幕上可见 */
+    .course-item:nth-child(2n) .course-detail {
+        left: auto;
+        right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-info h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .courses-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* 在最小屏幕上，让详情内容水平居中 */
+    .course-detail {
+        width: 90vw;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        right: auto;
+    }
+    
+    .course-item:hover .course-detail {
+        transform: translateX(-50%) translateY(5px);
+    }
+    
+    /* 在最小屏幕上覆盖之前的右对齐设置 */
+    .course-item:nth-child(2n) .course-detail,
+    .course-item:nth-child(3n) .course-detail,
+    .course-item:nth-child(3n-1) .course-detail {
+        left: 50%;
+        right: auto;
+    }
+}
+
+/* 金融图表样式 */
+#financial-chart {
+    opacity: 0.9;
+    transform-origin: top left; /* 设置变换原点为左上角 */
+    /* 使用 transform 定位和初始缩放 - 调整X百分比使图表向左移动 */
+    transform: translate(43%, 100px) scale(1.15); 
+    animation: fadeIn 1.5s ease-out forwards;
+    /* 移除 absolute 定位属性 */
+    /* position: absolute; */
+    /* top: 70px; */
+    /* right: 50px; */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        /* 动画开始时的变换 - 同步调整 */
+        transform: translate(43%, 110px) scale(1.15);
+    }
+    to {
+        opacity: 0.9;
+         /* 动画结束时的变换，与#financial-chart一致 - 同步调整 */
+        transform: translate(43%, 100px) scale(1.15);
+    }
+}
+
+/* 数据点动画 */
+.data-point {
+    animation: fadeInPoint 2s ease-out forwards;
+    opacity: 0;
+}
+
+.data-point:nth-child(1) { animation-delay: 0.2s; }
+.data-point:nth-child(2) { animation-delay: 0.4s; }
+.data-point:nth-child(3) { animation-delay: 0.6s; }
+.data-point:nth-child(4) { animation-delay: 0.8s; }
+.data-point:nth-child(5) { animation-delay: 1.0s; }
+.data-point:nth-child(6) { animation-delay: 1.2s; }
+.data-point:nth-child(7) { animation-delay: 1.4s; }
+.data-point:nth-child(8) { animation-delay: 1.6s; }
+.data-point:nth-child(9) { animation-delay: 1.8s; }
+
+@keyframes fadeInPoint {
+    from {
+        opacity: 0;
+        r: 0;
+    }
+    to {
+        opacity: 1;
+        r: 3;
+    }
+}
+
+/* 脉冲效果点 */
+.pulsing-point {
+    animation: pulsePoint 2s infinite alternate;
+}
+
+@keyframes pulsePoint {
+    0% {
+        r: 3;
+        opacity: 0.7;
+    }
+    100% {
+        r: 5;
+        opacity: 1;
+    }
+}
+
+/* 折线图动画 */
+.chart-line {
+    stroke-dasharray: 1500;
+    stroke-dashoffset: 1500;
+    /* 缩短动画时间，改为2.2秒 */
+    animation: drawChartLine 2.2s ease-out forwards;
+}
+
+@keyframes drawChartLine {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* 预测线动画 */
+.prediction-line {
+    stroke-dasharray: 6, 6; /* 确保虚线效果 */
+    stroke-dashoffset: 150;
+    /* 进一步提前预测线动画开始时间，改为1.9s，确保白色线结束前预测线已开始 */
+    animation: drawPredictionLine 1.5s linear 1.9s forwards;
+}
+
+@keyframes drawPredictionLine {
+    from {
+        stroke-dashoffset: 150;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* 预测点动画 - 相应调整延迟时间 */
+.prediction-point {
+    opacity: 0;
+    r: 0;
+    animation: fadeInPredictionPoint 0.5s ease-out forwards;
+}
+
+/* 更新延迟时间，与预测线动画同步 */
+.prediction-point:nth-of-type(1) { animation-delay: 1.7s; } /* 预测线开始前稍早出现 */
+.prediction-point:nth-of-type(2) { animation-delay: 2.1s; } /* 预测线动画过程中出现 */
+.prediction-point:nth-of-type(3) { animation-delay: 2.5s; } /* 预测线动画过程中出现 */
+
+@keyframes fadeInPredictionPoint {
+    from {
+        opacity: 0;
+        r: 0;
+    }
+    70% {
+        opacity: 1;
+        r: 4; /* 稍微放大一点再缩小 */
+    }
+    to {
+        opacity: 1;
+        r: 3;
+    }
+}
+
+/* 预测标签动画 - 调整延迟，使其在预测线接近结束时出现 */
+.prediction-label {
+    opacity: 0;
+    /* 将预测标签的延迟时间提前至2.5s */
+    animation: fadeInPredictionLabel 1s ease-out 2.5s forwards; 
+}
+
+@keyframes fadeInPredictionLabel {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 面积图动画 */
+.chart-area {
+    opacity: 0;
+    animation: fadeInArea 2s ease-out 1s forwards;
+    /* 调整面积图路径以适应可能的宽度变化，或保持不变 */
+    /* d: path("M20,250 L80,200 L150,220 L200,100 L250,150 L300,80 L350,180 L400,120 L480,180 L480,300 L20,300 Z"); */
+}
+
+@keyframes fadeInArea {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.3;
+    }
+}
+
+/* 图表标签动画 */
+.chart-label {
+    opacity: 0;
+    animation: fadeInLabel 1.5s ease-out forwards;
+}
+
+.chart-label:nth-child(1) { animation-delay: 1.5s; }
+.chart-label:nth-child(2) { animation-delay: 1.7s; }
+.chart-label:nth-child(3) { animation-delay: 1.9s; }
+.chart-label:nth-child(4) { animation-delay: 2.1s; }
+.chart-label:nth-child(5) { animation-delay: 2.3s; }
+
+@keyframes fadeInLabel {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 动态数值标签 */
+#animated-value {
+    animation: pulseValue 3s infinite alternate;
+}
+
+@keyframes pulseValue {
+    0% {
+        fill: #ff9800;
+        opacity: 0.7;
+    }
+    100% {
+        fill: #ffb74d;
+        opacity: 1;
+    }
+}
+
+/* 参考线动画 */
+.reference-line {
+    animation: dashMove 15s linear infinite;
+}
+
+@keyframes dashMove {
+    to {
+        stroke-dashoffset: 100;
+    }
+}
+
+/* 响应式调整 - 重新评估 transform 属性以确保预测部分可见 */
+@media (max-width: 1400px) {
+    #financial-chart {
+        /* 调整X百分比确保右侧空间 */
+        transform: translate(40%, 95px) scale(1.0);
+    }
+}
+
+@media (max-width: 1200px) {
+    #financial-chart {
+        transform: translate(36%, 90px) scale(0.9);
+    }
+}
+
+@media (max-width: 992px) {
+    #financial-chart {
+        transform: translate(28%, 80px) scale(0.75);
+    }
+}
+
+@media (max-width: 768px) {
+    #financial-chart {
+        transform: translate(18%, 70px) scale(0.6);
+    }
+}
+
+@media (max-width: 576px) {
+    #financial-chart {
+        opacity: 0.5;
+        transform: translate(5%, 65px) scale(0.45);
+    }
+} 
